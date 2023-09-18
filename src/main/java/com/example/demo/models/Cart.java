@@ -14,12 +14,24 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
+
     public Long getId() {
         return id;
     }
 
     public List<Product> getProducts() {
         return products;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 
     public void setProducts(List<Product> products) {
