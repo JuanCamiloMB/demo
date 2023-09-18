@@ -1,9 +1,9 @@
 package com.example.demo.repositories;
 
-import com.example.demo.models.Product;
+import com.example.demo.models.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductDao extends JpaRepository<Product, Long> {
+public interface CartDao extends JpaRepository<Cart, Long> {
 }
