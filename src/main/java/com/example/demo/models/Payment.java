@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -11,7 +12,7 @@ public class Payment {
     private Long id;
     private double amount;
     private Date paymentDate;
-
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
@@ -34,6 +35,10 @@ public class Payment {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public Date getPaymentDate() {
+        return paymentDate;
     }
 
     public void setPaymentDate(Date paymentDate) {

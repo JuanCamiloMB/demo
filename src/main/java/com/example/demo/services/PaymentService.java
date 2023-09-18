@@ -21,25 +21,20 @@ public class PaymentService {
         this.cartDao = cartDao;
     }
 
-    public Payment createPayment(double amount, Cart cartInfo){
+    public Payment createPayment(double amount, Cart cart){
         Payment payment = new Payment();
         payment.setAmount(amount);
         payment.setPaymentDate(new Date());
 
-        Long cartId = cartInfo.getId();
-        Cart cart = cartDao.findById(cartId).orElse(null);
-
-
-        if(cart != null){
-            cart.setPayment(payment);
-            payment.setCart(cart);
+        cart.setPayment(payment);
+        payment.setCart(cart);
+        try {
+            Payment savedPayment = paymentDao.save(payment);
             cartDao.save(cart);
-            return paymentDao.save(payment);
-        } else {
-            throw new EntityNotFoundException("Cart or Payment not found PAYMENT SERVICE");
+            return savedPayment;
+        } catch (Exception e){
+            System.out.println("Can't do that");
+            return new Payment();
         }
-
-
     }
-
 }

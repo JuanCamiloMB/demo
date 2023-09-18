@@ -1,5 +1,6 @@
 package com.example.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,12 +9,13 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
     private String name;
-    private String price;
+    private float price;
 
     private String img;
     private String description;
@@ -34,7 +36,7 @@ public class Product {
         return name;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -54,7 +56,7 @@ public class Product {
         this.name = name;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
