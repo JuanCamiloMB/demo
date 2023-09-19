@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/cart")
 public class CartController {
@@ -51,7 +51,6 @@ public class CartController {
             return ResponseEntity.notFound().build();
         }
     }
-
     @GetMapping("/{cartId}")
     public ResponseEntity<Cart> getCart(@PathVariable Long cartId){
         Cart cart = cartService.getCartById(cartId);
